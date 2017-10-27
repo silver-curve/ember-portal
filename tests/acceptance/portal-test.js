@@ -14,8 +14,8 @@ module('Acceptance | portal', {
   }
 });
 
-test('visiting /', function(assert) {
-  visit('/');
+test('visiting /portals/example', function(assert) {
+  visit('/portals/example');
 
   andThen(function() {
     assert.equal(find(".header").length, 1, 'Has 1 header');
@@ -26,8 +26,8 @@ test('visiting /', function(assert) {
   });
 });
 
-test('visiting /foo', function(assert) {
-  visit('/foo');
+test('visiting /portals/example/foo', function(assert) {
+  visit('/portals/example/foo');
 
   andThen(function() {
     assert.equal(find(".header").length, 1, 'Has 1 header');
@@ -39,8 +39,8 @@ test('visiting /foo', function(assert) {
 });
 
 
-test('visiting /bar', function(assert) {
-  visit('/bar');
+test('visiting /portals/example/bar', function(assert) {
+  visit('/portals/example/bar');
 
   andThen(function() {
     assert.equal(find(".header").length, 1, 'Has 1 header');
@@ -53,16 +53,16 @@ test('visiting /bar', function(assert) {
 
 test('cleans up when leaving page', function(assert) {
   assert.expect(0);
-  visit('/foo');
+  visit('/portals/example/foo');
 
   andThen(function() {
     // throws errors in Ember 2.16 without bugfix
-    visit('/bar');
+    visit('/noportals/foo');
   });
 });
 
-test('visiting /bar/baz', function(assert) {
-  visit('/bar/baz');
+test('visiting /portals/example/bar/baz', function(assert) {
+  visit('/portals/example/bar/baz');
 
   andThen(function() {
     assert.equal(find(".header").length, 1, 'Has 1 header');
@@ -75,7 +75,7 @@ test('visiting /bar/baz', function(assert) {
 
 
 test('can give portals classes', function(assert) {
-  visit('/');
+  visit('/portals/example');
 
   andThen(function() {
     assert.equal(find("#ember-portal--header.header-portal").length, 1, 'header has a custom class');
@@ -86,11 +86,11 @@ test('can give portals classes', function(assert) {
 test('should be without deprecation warnings', function(assert) {
   assert.expect(0);
   raiseOnDeprecations(function() {
-    visit('/');
-    visit('/foo');
-    visit('/bar');
-    visit('/bar/baz');
-    visit('/');
+    visit('/portals/example');
+    visit('/portals/example/foo');
+    visit('/portals/example/bar');
+    visit('/portals/example/bar/baz');
+    visit('/noportals/foo');
   });
 });
 

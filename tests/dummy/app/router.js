@@ -7,11 +7,16 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route("example", { path: "/" }, function() {
-    this.route("foo");
-    this.route("bar", function() {
-      this.route("baz");
+  this.route("portals", function() {
+    this.route('example', function() {
+      this.route('bar', function() {
+        this.route('baz');
+      });
+      this.route('foo');
     });
+  });
+  this.route('noportals', function() {
+    this.route('foo');
   });
 });
 

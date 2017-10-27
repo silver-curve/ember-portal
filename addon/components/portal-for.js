@@ -37,10 +37,11 @@ export default Component.extend({
   },
 
   willDestroyElement() {
+    this._super(...arguments);
     const portal = this._portal;
     portal.style.display = 'none';
-    this._oldParent.appendChild(portal);
-    this._super(...arguments);
+//    this._oldParent.appendChild(portal);
+document.body.appendChild(this.portalElement())
   }
 
 });
