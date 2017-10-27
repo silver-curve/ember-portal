@@ -34,8 +34,8 @@ export default Component.extend({
   },
 
   willDestroyElement() {
-    this._super(...arguments);
     this.get("portalService").removePortalContent(this.get("for"), this);
+    this._super(...arguments);
   },
 
   setupWormholeElement() {

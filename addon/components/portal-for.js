@@ -29,14 +29,18 @@ export default Component.extend({
       portal.className = portalClass;
     }
 
-    this.get("element").appendChild(portal);
+    this._oldParent = portal.parentNode || document.body;
+    this._portal = portal;
+
+    const element = this.get("element");
+    element.appendChild(portal);
   },
 
   willDestroyElement() {
-    this._super(...arguments);
-    const portal = this.portalElement();
+    const portal = this._portal;
     portal.style.display = 'none';
-    document.body.appendChild(portal);
+    this._oldParent.appendChild(portal);
+    this._super(...arguments);
   }
 
 });

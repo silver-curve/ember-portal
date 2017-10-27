@@ -51,6 +51,16 @@ test('visiting /bar', function(assert) {
   });
 });
 
+test('cleans up when leaving page', function(assert) {
+  assert.expect(0);
+  visit('/foo');
+
+  andThen(function() {
+    // throws errors in Ember 2.16 without bugfix
+    visit('/bar');
+  });
+});
+
 test('visiting /bar/baz', function(assert) {
   visit('/bar/baz');
 
