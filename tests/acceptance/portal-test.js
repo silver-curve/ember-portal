@@ -86,6 +86,7 @@ test('can give portals classes', function(assert) {
 test('should be without deprecation warnings', function(assert) {
   assert.expect(0);
   raiseOnDeprecations(function() {
+    visit('/noportals/foo'); // start and finish with no portals
     visit('/portals/example');
     visit('/portals/example/foo');
     visit('/portals/example/bar');
